@@ -1,0 +1,388 @@
+/* ======================
+   BASE RESET
+====================== */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background: #8cc461;
+  min-height: 100vh;
+  margin: 0;
+  overflow: hidden;
+  
+}
+
+
+
+.container {
+  width: 900px;
+  margin: 40px auto; /* centers horizontally */
+  text-align: center;
+}
+
+
+
+
+/* ======================
+   SCORE BOARD
+====================== */
+
+#score-board {
+  border: 2px solid white;
+  border-radius: 12px;
+  padding: 20px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+  margin-bottom: 40px;
+}
+
+
+
+.title h2 {
+  line-height: 1.2;
+  text-align: left;
+}
+
+.scores {
+  display: flex;
+  gap: 20px;
+}
+
+.score-card {
+  background: white;
+  color: black;
+  border-radius: 8px;
+  width: 120px;
+  height: 100px;              /* FORCE SAME HEIGHT */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;    /* VERTICAL CENTER */
+  align-items: center;        /* HORIZONTAL CENTER */
+}
+
+.score-card p {
+  font-size: 17px;
+  font-weight: 600;
+  margin: 2px 2px 2px 6px;
+  
+}
+
+.score-card span {
+  font-size: 32px;
+  font-weight: bold;
+  line-height: 1;
+}
+
+/* ======================
+   GAME AREA
+====================== */
+
+#choices {
+  position: relative;
+  width: 300px;
+  height: 260px;
+  margin: 90px auto;
+}
+
+/* ======================
+   TRIANGLE CONNECTOR LINES (FIXED)
+====================== */
+
+.line {
+  position: absolute;
+  height: 8px;
+  background: #000000;
+  transform-origin: 0 50%; /* LEFT-CENTER */
+  z-index: 1;
+}
+
+/* Rock → Paper */
+.line.left {
+  width: 165px;
+  top: 60px;        /* Rock center Y (120/2) */
+  left: 150px;      /* Rock center X */
+  transform: rotate(120deg);
+}
+
+/* Rock → Scissors */
+.line.right {
+  width: 165px;
+  top: 60px;
+  left: 150px;
+  transform: rotate(60deg);
+}
+
+/* Paper → Scissors */
+.line.bottom {
+  width: 180px;
+  height: 8px;
+  top: 200px;       /* Paper/Scissor center Y */
+  left: 60px;
+}
+
+/* ======================
+   CHOICE CIRCLES
+====================== */
+
+.choice {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: white;
+  border: none;
+  position: absolute;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.choice img {
+  width: 65%;
+  height: 65%;
+  object-fit: contain;
+  pointer-events: none;
+}
+
+/* Triangle vertices */
+
+.stone {
+  top: 0;
+  left: 90px;        /* (300 - 120) / 2 */
+  border: 15px solid #0074b6;
+}
+
+.paper {
+  top: 140px;
+  left: 0;
+  border: 15px solid #ffa943;
+}
+
+.scissor {
+  top: 140px;
+  right: 0;
+  border: 15px solid #bd00ff;
+}
+
+/* ======================
+   RESULT SCREEN
+====================== */
+
+.result-choices {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 60px;
+  margin-left: 100px;
+  margin-right: 50px;
+}
+/* ======================
+   RESULT TEXT COLOR
+====================== */
+
+#result-text {
+  color: white;
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+
+.picked p {
+  color: white;
+  margin-bottom: 10px;
+}
+
+/* Picked circle */
+
+.choice-circle {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: white;
+}
+
+/* Picked icons */
+
+.choice-circle.stone {
+  background: white url("./assests/rock.jpeg") no-repeat center;
+  background-size: 65%;
+  border: 15px solid #0074b6;
+}
+
+.choice-circle.paper {
+  background: white url("./assests/paper.jpeg") no-repeat center;
+  background-size: 65%;
+  border: 15px solid #ffa943;
+}
+
+.choice-circle.scissor {
+  background: white url("./assests/scissors.jpeg") no-repeat center;
+  background-size: 65%;
+  border: 15px solid #bd00ff;
+}
+
+/* ======================
+   ACTION BUTTONS
+====================== */
+
+/* shared style */
+#play-again,
+#next,
+#hurray-play-again {
+  background: white;
+  border: 2px solid white;
+  color: rgb(0, 0, 0);
+  padding: 10px 24px;
+  border-radius: 10px;
+  font-size: 14px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+/* hover effect */
+#play-again:hover,
+#next:hover,
+#hurray-play-again:hover {
+  background: white;
+  color: #2d5a1f; /* same dark green used elsewhere */
+}
+
+/* spacing & alignment */
+.result-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+/* ======================
+   WINNER GLOW (5 RINGS)
+   Color: #2E9A25
+   OUTSIDE border only
+====================== */
+
+.winner {
+  box-shadow:
+    0 0 0 20px rgba(46,154,37,0.45),
+    0 0 0 40px rgba(46,154,37,0.35),
+    0 0 0 60px rgba(46,154,37,0.25),
+    0 0 0 70px rgba(46,154,37,0.15),
+    0 0 0 80px rgba(46,154,37,0.08);
+  animation: winnerGlow 2.5s linear infinite;
+}
+
+@keyframes winnerGlow {
+  from {
+    box-shadow:
+      0 0 0 18px  rgba(46,154,37,0.45),
+      0 0 0 28px rgba(46,154,37,0.35),
+      0 0 0 48px rgba(46,154,37,0.25),
+      0 0 0 68px rgba(46,154,37,0.15),
+      0 0 0 78px rgba(46,154,37,0.08);
+  }
+  to {
+    box-shadow:
+      0 0 0 22px rgba(46,154,37,0.45),
+      0 0 0 42px rgba(46,154,37,0.35),
+      0 0 0 62px rgba(46,154,37,0.25),
+      0 0 0 72px rgba(46,154,37,0.15),
+      0 0 0 82px rgba(46,154,37,0.08);
+  }
+}
+
+/* ======================
+   HURRAY SCREEN
+====================== */
+
+#hurray {
+  color: white;
+}
+
+#hurray h1 {
+    margin-bottom:10px;
+    font-size:75px;
+
+}
+
+
+#hurray p {
+    margin-bottom: 40px;
+     font-size:35px;
+
+}
+
+.trophy {
+  width: 300px;
+  height: auto;
+ 
+}
+
+/* ======================
+   RULES MODAL
+====================== */
+
+#rules-btn {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background: transparent;
+  border: 2px solid white;
+  color: white;
+  padding: 10px 20px;
+  z-index: 9999;
+}
+
+#rules-modal {
+  position: fixed;
+  bottom: 90px;
+  right: 30px;
+
+  background: #004429;
+  color: white;
+  padding: 30px;
+  border: 4px solid white ;
+  border-radius: 12px;
+  width: 280px;
+
+  display: flex;              /* 🔑 REQUIRED */
+  flex-direction: column;
+  align-items: center;        /* CENTER HORIZONTALLY */
+
+  z-index: 9999;
+}
+#rules-modal h3 {
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+#rules-modal ul {
+  list-style: disc;
+  padding-left: 20px;
+  text-align: left;           /* READABLE LIST */
+}
+
+#rules-modal li {
+  margin-bottom: 8px;
+}
+
+
+#close-rules {
+  position: absolute;
+  top: -15px;
+  right: -15px;
+  background: red;
+  color: white;
+  border: 4px solid white;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  
+}

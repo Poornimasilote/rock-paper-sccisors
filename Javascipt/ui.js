@@ -1,6 +1,4 @@
-/* =========================
-   DOM REFERENCES
-========================= */
+/* ************* DOM REFERENCES*/
 
 // Scoreboard
 const scoreBoard = document.getElementById("score-board");
@@ -20,18 +18,14 @@ const nextBtn = document.getElementById("next");
 const userPickedEl = document.getElementById("user-picked");
 const pcPickedEl = document.getElementById("pc-picked");
 
-/* =========================
-   SCORE RENDERING
-========================= */
+/****************** SCORE RENDERING */
 
 const renderScores = () => {
   userScoreEl.textContent = gameState.userScore;
   pcScoreEl.textContent = gameState.pcScore;
 };
 
-/* =========================
-   RESULT SCREEN
-========================= */
+/*********************** RESULT SCREEN */
 
 const showPickedChoices = () => {
   // reset previous classes
@@ -42,7 +36,7 @@ const showPickedChoices = () => {
   userPickedEl.classList.add(gameState.userChoice);
   pcPickedEl.classList.add(gameState.pcChoice);
 
-  // apply 3-ring glow to winner only
+  // apply 5-ring glow to winner only
   if (gameState.result === "win") {
     userPickedEl.classList.add("winner");
   } else if (gameState.result === "lose") {
@@ -71,9 +65,9 @@ const showResult = (result) => {
   showPickedChoices();
 };
 
-/* =========================
-   RESET / PLAY AGAIN
-========================= */
+
+//   RESET / PLAY AGAIN
+
 
 function resetGame() {
 
@@ -84,31 +78,31 @@ function resetGame() {
   void userPickedEl.offsetWidth;
   void pcPickedEl.offsetWidth;
 
-  /* =========================
-     RESET SCREENS
-  ========================= */
+ 
+ //    RESET SCREENS
+ 
 
   document.getElementById("result").style.display = "none";
   document.getElementById("hurray").style.display = "none";
   document.getElementById("game").style.display = "block";
 
-    /* =========================
-     RESTORE SCOREBOARD ✅
-  ========================= */
+    
+  //   RESTORE SCOREBOARD 
+  
 
   scoreBoard.style.display = "flex"; 
 
-  /* =========================
-     RESET RESULT UI
-  ========================= */
+ 
+//     RESET RESULT UI
+
 
   document.getElementById("next").style.display = "none";
 }
 
 
-/* =========================
-   HURRAY SCREEN
-========================= */
+
+   //HURRAY SCREEN
+
 
 const showHurray = () => {
   resultSection.style.display = "none";

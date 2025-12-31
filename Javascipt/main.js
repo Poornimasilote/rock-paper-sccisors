@@ -1,13 +1,9 @@
-/* =========================
-   INITIALIZE APP
-========================= */
+/*INITIALIZE APP*/
 
 loadScores();
 renderScores();
 
-/* =========================
-   GAME CHOICE HANDLERS
-========================= */
+/* GAME CHOICE HANDLERS */
 
 document.querySelectorAll("[data-choice]").forEach((btn) => {
   btn.addEventListener("click", () => {
@@ -21,33 +17,25 @@ document.querySelectorAll("[data-choice]").forEach((btn) => {
   });
 });
 
-/* =========================
-   PLAY AGAIN (FROM RESULT)
-========================= */
+/* PLAY AGAIN (FROM RESULT) */
 
 document
   .getElementById("play-again")
   .addEventListener("click", resetGame);
 
-/* =========================
-   NEXT → HURRAY SCREEN
-========================= */
+/* NEXT → HURRAY SCREEN*/
 
 document
   .getElementById("next")
   .addEventListener("click", showHurray);
 
-/* =========================
-   PLAY AGAIN (FROM HURRAY)
-========================= */
+/*PLAY AGAIN (FROM HURRAY)  */
 
 document
   .getElementById("hurray-play-again")
   .addEventListener("click", resetGame);
 
-/* =========================
-   RULES MODAL
-========================= */
+/*  RULES MODAL */
 
 const rulesBtn = document.getElementById("rules-btn");
 const rulesModal = document.getElementById("rules-modal");

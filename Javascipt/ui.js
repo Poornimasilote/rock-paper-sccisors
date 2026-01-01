@@ -67,8 +67,6 @@ const showResult = (result) => {
 
 
 //   RESET / PLAY AGAIN
-
-
 function resetGame() {
 
   userPickedEl.classList.remove("winner");
@@ -80,22 +78,16 @@ function resetGame() {
 
  
  //    RESET SCREENS
- 
-
   document.getElementById("result").style.display = "none";
   document.getElementById("hurray").style.display = "none";
   document.getElementById("game").style.display = "block";
 
     
   //   RESTORE SCOREBOARD 
-  
-
   scoreBoard.style.display = "flex"; 
 
  
 //     RESET RESULT UI
-
-
   document.getElementById("next").style.display = "none";
 }
 
